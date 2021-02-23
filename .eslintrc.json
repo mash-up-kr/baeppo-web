@@ -1,0 +1,58 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 11,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "JSX": true
+  },
+  "extends": ["airbnb-base", "plugin:react/recommended", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "react"],
+  "rules": {
+    "object-curly-newline": ["error", { "multiline": true }],
+    "operator-linebreak": ["error", "after"],
+    "no-use-before-define": "off",
+    "implicit-arrow-linebreak": "off",
+    "quotes": ["error", "double"],
+    "import/order": [
+      "error", {
+        "groups": [
+          "builtin", 
+          "external", 
+          "parent", 
+          "sibling", 
+          "index"
+        ],
+        "newlines-between": "always",
+        "alphabetize": {"order": "asc", "caseInsensitive": true}
+      }
+    ],
+    "react/prop-types": ["error", { "ignore": ["children"] }],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+   ],
+   "no-unused-expressions": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "src/"]
+      }
+    }
+  }
+}
