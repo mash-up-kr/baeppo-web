@@ -1,0 +1,66 @@
+interface NaverMap {
+  Animation: any;
+  BicycleLayer: function;
+  CadastralLayer: function;
+  CanvasMapType: function;
+  CanvasTile: function;
+  Circle: function;
+  CustomControl: function;
+  Data: function;
+  DataConverter: any;
+  EPSG3857: any;
+  Ellipse: function;
+  EmptyProjection: any;
+  Event: any;
+  Feature: function;
+  Geometry: function;
+  GroundOverlay: function;
+  ImageMapType: function;
+  ImageTile: function;
+  InfoWindow: function;
+  KVO: function;
+  KVOArray: function;
+  LabelLayer: function;
+  LatLng: function;
+  LatLngBounds: function;
+  Layer: function;
+  LogoControl: function;
+  Map: function;
+  MapDataControl: function;
+  MapTypeControl: function;
+  MapTypeControlStyle: any;
+  MapTypeId: any;
+  MapTypeRegistry: function;
+  Marker: function;
+  NaverMapTypeOption: function;
+  NaverStyleMapTypeOption: function;
+  OverlayView: function;
+  PaneTypeRegistry: function;
+  Point: function;
+  PointBounds: function;
+  PointingIcon: any;
+  Polygon: function;
+  Polyline: function;
+  Position: any;
+  Projection: function;
+  Rectangle: function;
+  ScaleControl: function;
+  Size: function;
+  StreetLayer: function;
+  SymbolPath: any;
+  SymbolStyle: any;
+  Tile: function;
+  TileIndexPane: function;
+  TrafficLayer: function;
+  UTMK: any;
+  UTMK_NAVER: any;
+  Util: any;
+  ZoomControl: function;
+  ZoomControlStyle: any;
+  jsContentLoaded: boolean;
+  onJSContentLoaded: any;
+}
+
+declare namespace naver {
+  const maps: NaverMap;
+}
