@@ -28,10 +28,14 @@ export const markerState = selector({
   },
 });
 
-export const centerState = selector({
+export const centerState = selector<LatLng>({
   key: "centerState",
   get: ({ get }) =>
     get(naverMapState).center,
+  set: ({ set }, center) => set(naverMapState, (prevState) => ({
+    ...prevState,
+    center: center as LatLng,
+  })),
 });
 
 export default naverMapState;
