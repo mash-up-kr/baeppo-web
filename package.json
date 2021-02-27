@@ -27,6 +27,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "next": "10.0.4",
+    "nuka-carousel": "^4.7.5",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "recoil": "^0.1.2",
