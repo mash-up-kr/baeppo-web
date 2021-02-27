@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { FC, useState } from "react";
+import React, { FC, useMemo, useState } from "react";
 import styled from "styled-components";
 
 import SearchInput from "./SearchInput";
@@ -7,6 +7,18 @@ import Tab from "./Tab";
 
 const Sidebar: FC = () => {
   const [currentTab, setCurrentTab] = useState(0);
+
+  const renderTabContent = useMemo(() => {
+    switch (currentTab) {
+      case 1:
+        return <>관심리뷰</>;
+      case 2:
+        return <>마이리뷰</>;
+      case 0:
+      default:
+        return <>입담리스트</>;
+    }
+  }, [currentTab]);
 
   return (
     <SidebarWrapper>
@@ -38,6 +50,7 @@ const Sidebar: FC = () => {
             마이리뷰
           </div>
         </Tab>
+        <TabContent>{renderTabContent}</TabContent>
       </MainSection>
     </SidebarWrapper>
   );
@@ -65,6 +78,13 @@ const SidebarWrapper = styled.div`
 `;
 
 const MainSection = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 590px;
   height: 100%;
+`;
+
+const TabContent = styled.div`
+  flex: 1;
+  margin-top: 20px;
 `;
