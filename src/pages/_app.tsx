@@ -1,4 +1,6 @@
+import FontFaceObserver from "fontfaceobserver";
 import { AppProps } from "next/app";
+import Head from "next/head";
 import React, { FC } from "react";
 import { RecoilRoot } from "recoil";
 import { createGlobalStyle } from "styled-components";
@@ -32,10 +34,31 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.fonts-loaded {
+  body,
+  input,
+  textarea {
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+}
 `;
+
+const font = new FontFaceObserver("Noto Sans KR");
+
+font.load().then(() => {
+  document.documentElement.className += " fonts-loaded";
+});
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => (
   <RecoilRoot>
+    <Head>
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet"
+      />
+    </Head>
     <GlobalStyle />
     <Container>
       <Component {...pageProps} />
