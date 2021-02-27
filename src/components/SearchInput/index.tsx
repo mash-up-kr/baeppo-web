@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { FC, HTMLProps, useCallback, useEffect, useState } from "react";
+import React, { FC, useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 
@@ -11,12 +11,10 @@ import LatLng from "types/LatLng";
 import searchKeyword from "utils/apis/SearchApi";
 import { centerState } from "utils/states/naverMapState";
 
-type SearchInputProps = HTMLProps<HTMLInputElement>;
-
 const RECENT_KEYWORD_KEY = "recentKeywords";
 
-const SearchInput: FC<SearchInputProps> = () => {
-  const [center, setCenter] = useRecoilState(centerState);
+const SearchInput: FC = () => {
+  const [, setCenter] = useRecoilState(centerState);
 
   const [keyword, setKeyword] = useState("");
   const [isDropdownShown, setIsDropdownShown] = useState(false);
@@ -100,7 +98,7 @@ const SearchInput: FC<SearchInputProps> = () => {
           onFocus={() => setIsDropdownShown(true)}
         />
         <Image
-          src="/search.png"
+          src="/search.svg"
           alt="search"
           width={20}
           height={20}
