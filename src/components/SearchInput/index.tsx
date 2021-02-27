@@ -139,6 +139,7 @@ export default SearchInput;
 
 const Wrapper = styled.div<{ isDropdownShown?: boolean }>`
   position: relative;
+  z-index: 1;
   border: 1px solid #cbcbcb;
 
   ${(props) =>
