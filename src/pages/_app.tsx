@@ -1,3 +1,4 @@
+import FontFaceObserver from "fontfaceobserver";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import React, { FC } from "react";
@@ -11,12 +12,18 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-
-input,
-textarea {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
 }
 
 a {
@@ -27,7 +34,21 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.fonts-loaded {
+  body,
+  input,
+  textarea {
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+}
 `;
+
+const font = new FontFaceObserver("Noto Sans KR");
+
+font.load().then(() => {
+  document.documentElement.className += " fonts-loaded";
+});
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => (
   <RecoilRoot>
