@@ -34,11 +34,9 @@ const Logo = styled.div`
 `;
 
 const SidebarWrapper = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
+  z-index: 1;
   display: flex;
-  height: 100%;
+  height: 100vh;
   padding: 22px 24px;
   background: white;
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
