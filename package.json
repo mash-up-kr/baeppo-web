@@ -26,7 +26,9 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "fontfaceobserver": "^2.1.0",
     "next": "10.0.4",
+    "nuka-carousel": "^4.7.5",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "recoil": "^0.1.2",
@@ -34,6 +36,7 @@
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
+    "@types/fontfaceobserver": "^0.0.6",
     "@types/navermaps": "^3.0.5",
     "@types/node": "^14.14.16",
     "@types/react": "^17.0.0",

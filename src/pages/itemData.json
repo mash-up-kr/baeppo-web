@@ -1,0 +1,49 @@
+{
+    "items": [
+        {
+            "id": "1",
+            "buildingName": "미리내홈타운",
+            "userId": "유저 1",
+            "nickName": "유저 2(닉넴)",
+            "rating": 2,
+            "createdDate": "2013.02.28",
+            "isBookmark": true,
+            "images": [
+                "/review1.jpg",
+                "/review2.jpg",
+                "/review3.jpg"
+            ],
+            "content": "여러분, 제가 살아봤는데요... 이집은 아니에요 제발 제글 좀 봐주세요.."
+        },
+        {
+            "id": "2",
+            "buildingName": "옥슨빌",
+            "userId": "유저 2",
+            "nickName": "유저 2(닉넴)",
+            "rating": 3,
+            "createdDate": "2021.02.28",
+            "isBookmark": true,
+            "images": [
+                "/review2.jpg",
+                "/review1.jpg",
+                "/review3.jpg"
+            ],
+            "content": "일단 방이 진짜 넓어요, 같은 가격대에 이만큼 큰집 본적없어요. 위치도 신촌이랑 단월사이라 적당합니다. 아 침대도 퀸 사이즈라 좋아용"
+        },
+        {
+            "id": "1625717680",
+            "buildingName": "광미빌 A동",
+            "userId": "유저 3",
+            "nickName": "유저 3(닉넴)",
+            "rating": 4,
+            "createdDate": "2021.02.28",
+            "isBookmark": true,
+            "images": [
+                "/review3.jpg",
+                "/review2.jpg",
+                "/review1.jpg"
+            ],
+            "content": "집주인 아저씨가 너무 친절하십니다-!"
+        }
+    ]
+}
