@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { FC, useCallback, useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 
 import RecentKeywords from "./RecentKeywords";
@@ -14,7 +14,7 @@ import { centerState } from "utils/states/naverMapState";
 const RECENT_KEYWORD_KEY = "recentKeywords";
 
 const SearchInput: FC = () => {
-  const [, setCenter] = useRecoilState(centerState);
+  const setCenter = useSetRecoilState(centerState);
 
   const [keyword, setKeyword] = useState("");
   const [isDropdownShown, setIsDropdownShown] = useState(false);
@@ -44,7 +44,7 @@ const SearchInput: FC = () => {
   };
 
   const handleSearch = useCallback(async () => {
-    search(keyword);
+    await search(keyword);
 
     const newRecentKeywords = [keyword, ...recentKeywords];
     localStorage.setItem(
@@ -80,9 +80,11 @@ const SearchInput: FC = () => {
 
   const handleRecentKeywordRemove = useCallback(
     (index: number) => {
-      const newRecentKeyword = [...recentKeywords];
-      newRecentKeyword.splice(index, 1);
-      setRecentKeywords(newRecentKeyword);
+      const newRecentKeywords = [...recentKeywords];
+      newRecentKeywords.splice(index, 1);
+
+      localStorage.setItem(RECENT_KEYWORD_KEY, newRecentKeywords.join(","));
+      setRecentKeywords(newRecentKeywords);
     },
     [recentKeywords],
   );
