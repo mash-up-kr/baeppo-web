@@ -1,5 +1,6 @@
 import { AppProps } from "next/app";
 import React, { FC } from "react";
+import { RecoilRoot } from "recoil";
 import { createGlobalStyle } from "styled-components";
 
 import Container from "components/Container";
@@ -34,12 +35,12 @@ a {
 `;
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => (
-  <>
+  <RecoilRoot>
     <GlobalStyle />
     <Container>
       <Component {...pageProps} />
     </Container>
-  </>
+  </RecoilRoot>
 );
 
 export default MyApp;
