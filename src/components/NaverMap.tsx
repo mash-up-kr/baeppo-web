@@ -70,6 +70,6 @@ const NaverMap: FC<NaverMapProps> = () => {
 export default NaverMap;
 
 const MapWrapper = styled.div`
-  width: 100vw;
+  flex: 1;
   height: 100vh;
 `;

@@ -39,13 +39,11 @@ const Logo = styled.div`
 `;
 
 const SidebarWrapper = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
+  z-index: 1;
   display: flex;
   max-width: 1322px;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: 997;
 `;
 
