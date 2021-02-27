@@ -22,11 +22,6 @@ const NaverMap: FC<NaverMapProps> = () => {
       new naver.maps.Map("map", {
         center: new naver.maps.LatLng(37.3595704, 127.105399),
         zoom: 15,
-        zoomControl: true,
-        zoomControlOptions: {
-          style: naver.maps.ZoomControlStyle.SMALL,
-          position: naver.maps.Position.TOP_RIGHT,
-        },
       }),
     );
   }, []);
