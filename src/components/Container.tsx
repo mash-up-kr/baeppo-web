@@ -6,7 +6,6 @@ const Container: FC = ({ children }) => <Wrapper>{children}</Wrapper>;
 export default Container;
 
 const Wrapper = styled.div`
-  width: 90%;
-  min-width: 325px;
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
 `;
