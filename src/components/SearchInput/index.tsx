@@ -94,7 +94,11 @@ const SearchInput: FC = () => {
   };
 
   return (
-    <Wrapper onBlur={handleBlur} tabIndex={-1}>
+    <Wrapper
+      onBlur={handleBlur}
+      tabIndex={-1}
+      isDropdownShown={isDropdownShown}
+    >
       <InputWrapper isDropdownShown={isDropdownShown}>
         <StyledInput
           value={keyword}
@@ -111,8 +115,8 @@ const SearchInput: FC = () => {
           onClick={handleSearch}
         />
       </InputWrapper>
-      {isDropdownShown &&
-        (isSearched ? (
+      <Dropdown isDropdownShown={isDropdownShown}>
+        {isSearched ? (
           <SearchResults
             results={results}
             onClick={handleItemClick}
@@ -125,16 +129,28 @@ const SearchInput: FC = () => {
             onKeywordClick={handleItemClick}
             onRemoveItem={handleRecentKeywordRemove}
           />
-        ))}
+        )}
+      </Dropdown>
     </Wrapper>
   );
 };
 
 export default SearchInput;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ isDropdownShown?: boolean }>`
+  position: relative;
   border: 1px solid #cbcbcb;
+
+  ${(props) =>
+    (props.isDropdownShown ?
+      `
+      border-top-left-radius: 25px;
+      border-top-right-radius: 25px;
+      border-bottom: none;
+  ` :
+      `
   border-radius: 25px;
+  `)}
   outline: none;
 `;
 
@@ -154,4 +170,23 @@ const StyledInput = styled.input`
   font-size: 16px;
   border: none;
   outline: none;
+`;
+
+const Dropdown = styled.div<{ isDropdownShown?: boolean }>`
+  position: absolute;
+  top: 100%;
+  left: -1px;
+  width: calc(100% + 2px);
+  background: white;
+
+  ${(props) =>
+    (props.isDropdownShown ?
+      `
+    display: block;
+    border: 1px solid #cbcbcb;
+    border-top: none;
+    border-bottom-left-radius: 25px;
+      border-bottom-right-radius: 25px;
+  ` :
+      "display: none;")}
 `;
