@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { FC } from "react";
 import styled from "styled-components";
 
@@ -5,32 +6,45 @@ import SearchInput from "./SearchInput";
 
 const Sidebar: FC = () => (
   <SidebarWrapper>
-    <Logo />
-    <KeySentence>입주자들의 솔직한 이야기를 만나보세요</KeySentence>
-    <SearchInput />
+    <MainSection>
+      <Logo>
+        <Image src="/logo.png" alt="logo" width="68px" height="68px" />
+        <Image
+          src="/logo_text.png"
+          alt="logo_text"
+          width="auto"
+          height="31px"
+        />
+      </Logo>
+      <SearchInput />
+    </MainSection>
   </SidebarWrapper>
 );
 
 export default Sidebar;
 
 const Logo = styled.div`
-  height: 68px;
-  background-color: gray;
-`;
+  display: flex;
+  align-items: center;
+  margin-bottom: 26px;
 
-const KeySentence = styled.h2`
-  margin: 18px 0 20px 0;
-  font-weight: normal;
-  font-size: 16px;
+  > *:not(:first-child) {
+    margin-left: 20px !important;
+  }
 `;
 
 const SidebarWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 590px;
+  display: flex;
   height: 100%;
   padding: 22px 24px;
   background: white;
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
+`;
+
+const MainSection = styled.div`
+  width: 590px;
+  height: 100%;
 `;
