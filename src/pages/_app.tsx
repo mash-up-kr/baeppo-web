@@ -1,4 +1,5 @@
 import { AppProps } from "next/app";
+import Head from "next/head";
 import React, { FC } from "react";
 import { RecoilRoot } from "recoil";
 import { createGlobalStyle } from "styled-components";
@@ -10,18 +11,12 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    Segoe UI,
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    Fira Sans,
-    Droid Sans,
-    Helvetica Neue,
-    sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+input,
+textarea {
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 a {
@@ -36,6 +31,13 @@ a {
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => (
   <RecoilRoot>
+    <Head>
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet"
+      />
+    </Head>
     <GlobalStyle />
     <Container>
       <Component {...pageProps} />
