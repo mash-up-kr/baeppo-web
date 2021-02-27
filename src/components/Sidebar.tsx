@@ -4,9 +4,11 @@ import styled from "styled-components";
 
 import SearchInput from "./SearchInput";
 
+import ReviewItemEdit from "components/ReviewItemEdit";
+
 const Sidebar: FC = () => (
   <SidebarWrapper>
-    <MainSection>
+    <ListSection>
       <Logo>
         <Image src="/logo.png" alt="logo" width="68px" height="68px" />
         <Image
@@ -17,7 +19,10 @@ const Sidebar: FC = () => (
         />
       </Logo>
       <SearchInput />
-    </MainSection>
+    </ListSection>
+    <ItemSection>
+      <ReviewItemEdit />
+    </ItemSection>
   </SidebarWrapper>
 );
 
@@ -38,13 +43,23 @@ const SidebarWrapper = styled.div`
   top: 0;
   left: 0;
   display: flex;
+  max-width: 1322px;
+  width: 100%;
   height: 100%;
-  padding: 22px 24px;
+  z-index: 997;
+`;
+
+const ListSection = styled.div`
+  width: 44.63%;
+  height: 100%;
+  padding: 28px 24px;
   background: white;
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
 `;
 
-const MainSection = styled.div`
-  width: 590px;
+const ItemSection = styled.div`
+  width: 55.37%;
   height: 100%;
+  padding: 60px 58px;
+  background-color: #F9F9F9;
 `;
