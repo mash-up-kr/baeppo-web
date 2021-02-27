@@ -87,8 +87,14 @@ const SearchInput: FC = () => {
     [recentKeywords],
   );
 
+  const handleBlur = (e: React.FocusEvent) => {
+    if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+      setIsDropdownShown(false);
+    }
+  };
+
   return (
-    <Wrapper>
+    <Wrapper onBlur={handleBlur} tabIndex={-1}>
       <InputWrapper isDropdownShown={isDropdownShown}>
         <StyledInput
           value={keyword}
@@ -129,6 +135,7 @@ export default SearchInput;
 const Wrapper = styled.div`
   border: 1px solid #cbcbcb;
   border-radius: 25px;
+  outline: none;
 `;
 
 const InputWrapper = styled.div<{ isDropdownShown?: boolean }>`
