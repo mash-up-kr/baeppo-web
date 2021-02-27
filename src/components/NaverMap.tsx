@@ -14,8 +14,8 @@ const NaverMap: FC<NaverMapProps> = () => {
   const markerInfos = useRecoilValue(markerState);
   const center = useRecoilValue(centerState);
 
-  const [map, setMap] = useState();
-  const [markers, setMarkers] = useState([]);
+  const [map, setMap] = useState<naver.maps.Map>();
+  const [markers, setMarkers] = useState<naver.maps.Marker[]>([]);
 
   useEffect(() => {
     setMap(

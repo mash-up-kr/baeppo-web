@@ -6,7 +6,6 @@ import Marker from "types/Marker";
 interface NaverMapStateProps {
   markers: Marker[];
   center: LatLng;
-  map?: any;
 }
 
 const naverMapState = atom<NaverMapStateProps>({
