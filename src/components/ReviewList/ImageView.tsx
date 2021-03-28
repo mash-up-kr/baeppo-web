@@ -3,24 +3,26 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 interface ImagesProp {
-  images: [string]
+  images: string[];
 }
 class ImageView extends Component<ImagesProp> {
-  render() {
+  render(): JSX.Element {
     const { images } = this.props;
 
     return (
       <SliderFrame>
         <Carousel
-        width="100%"
-        defaultControlsConfig={{
-          nextButtonText: "▶︎",
-          prevButtonText: "◀︎",
-          pagingDotsStyle: { fill: "white" },
-        }}
+          width="100%"
+          defaultControlsConfig={{
+            nextButtonStyle: { display: "none" },
+            prevButtonStyle: { display: "none" },
+            pagingDotsStyle: { fill: "white" },
+          }}
         >
           {images.map((image, i) => (
-            <Slide key={i}><img src={image} style={{ width: 500, height: "auto" }}/></Slide>
+            <Slide key={i}>
+              <img src={image} style={{ width: "100%", height: "auto" }} />
+            </Slide>
           ))}
         </Carousel>
       </SliderFrame>

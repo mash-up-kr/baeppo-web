@@ -1,11 +1,10 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
+import Item from "./Item";
 import ItemData from "./itemData.json";
 
-import Item from "components/Item";
-
-const List: FC = () => (
+const ReviewList: FC = () => (
   <div>
     <Head>
       <ListTitle>
@@ -14,7 +13,9 @@ const List: FC = () => (
         <DetailAddress>상세주소</DetailAddress>
       </ListTitle>
       <ListInfo>
-        대학명 자취방 리뷰 <span style={{ color: "#4d30ff" }}>{ItemData.items.length}</span>개<Bar/>
+        대학명 자취방 리뷰{" "}
+        <span style={{ color: "#4d30ff" }}>{ItemData.items.length}</span>개
+        <Bar />
       </ListInfo>
     </Head>
     {ItemData.items.map((item, i) => (
@@ -23,7 +24,7 @@ const List: FC = () => (
   </div>
 );
 
-export default List;
+export default ReviewList;
 
 const Head = styled.div`
   margin-left: 10px;

@@ -2,6 +2,7 @@ import Image from "next/image";
 import React, { FC, useMemo, useState } from "react";
 import styled from "styled-components";
 
+import ReviewList from "./ReviewList";
 import SearchInput from "./SearchInput";
 import Tab from "./Tab";
 
@@ -16,7 +17,7 @@ const Sidebar: FC = () => {
         return <>마이리뷰</>;
       case 0:
       default:
-        return <>입담리스트</>;
+        return <ReviewList />;
     }
   }, [currentTab]);
 
@@ -86,5 +87,5 @@ const MainSection = styled.div`
 
 const TabContent = styled.div`
   flex: 1;
-  margin-top: 20px;
+  overflow-y: scroll;
 `;
