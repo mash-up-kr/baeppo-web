@@ -21,6 +21,12 @@ const Button = styled.button<ButtonProps>`
   border-radius: 11px;
   outline: none;
   cursor: pointer;
+
+  &:disabled {
+    color: white;
+    background-color: #dbdbdb;
+    cursor: default;
+  }
 `;
 
 export default Button;

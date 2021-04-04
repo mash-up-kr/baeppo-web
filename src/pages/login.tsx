@@ -19,31 +19,20 @@ const LoginPage: FC = () => {
           <br />
           <Image src="/logo_text.png" width="auto" height={30} />
         </LogoWrapper>
-        <Input
-          placeholder="아이디"
-          mt="36px"
-          value={id}
-          onChange={(e) => setId(e.target.value)}
-        />
+        <Input placeholder="아이디" mt="36px" value={id} onValueChange={setId} />
         <Input
           placeholder="비밀번호"
           mt="16px"
           value={password}
           type="password"
-          onChange={(e) => setPassword(e.target.value)}
+          onValueChange={setPassword}
         />
-        <Button mt="28px">
-          로그인하기
-        </Button>
+        <Button mt="28px">로그인하기</Button>
         <ForgotInfo>
-          <Link href="/forgot">
-            아이디 혹은 비밀번호를 잊으셨나요?
-          </Link>
+          <Link href="/forgot">아이디 혹은 비밀번호를 잊으셨나요?</Link>
         </ForgotInfo>
         <SignUp>
-          <Link href="/signup">
-            입담 회원가입
-          </Link>
+          <Link href="/signup">입담 회원가입</Link>
         </SignUp>
       </PagePopup>
       <PageBottomLogoWrapper>
