@@ -11,7 +11,15 @@ interface NaverMapStateProps {
 const naverMapState = atom<NaverMapStateProps>({
   key: "naverMapState",
   default: {
-    markers: [],
+    // 임시 좌표(영진's house)
+    markers: [{
+      position: {
+        lat: 37.47699619488476,
+        lng: 126.95409135525202,
+      },
+      name: "서울대학교",
+      reviews: [1, 2, 3],
+    }],
     center: {
       lat: 37.47699619488476,
       lng: 126.95409135525202,
