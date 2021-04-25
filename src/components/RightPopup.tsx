@@ -1,8 +1,14 @@
 import Image from "next/image";
-import React, { FC, useState } from "react";
+import React, { FC, useCallback, useState } from "react";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 
 import Button from "./Button";
+import CreatorPopup from "./PopupContents/CreatorPopup";
+import TermsPopup from "./PopupContents/TermsPopup";
+
+import popupState from "utils/states/popupState";
+import { ellipsisText } from "utils/style/commonStyle";
 
 const TEMP_IMAGE = "/temp_profile.png";
 const TEMP_NAME = "Temp";
@@ -10,6 +16,27 @@ const TEMP_SCHOOL = "서울대학교";
 
 const RightPopup: FC = () => {
   const [isOpened, setIsOpened] = useState(false);
+  const setPopupList = useSetRecoilState(popupState);
+
+  const handleCreatorShow = useCallback(() => {
+    setPopupList((prevList) => [
+      ...prevList,
+      {
+        ...CreatorPopup,
+        zIndex: prevList.length + 1,
+      },
+    ]);
+  }, [setPopupList]);
+
+  const handleTermsShow = useCallback(() => {
+    setPopupList((prevList) => [
+      ...prevList,
+      {
+        ...TermsPopup,
+        zIndex: prevList.length + 1,
+      },
+    ]);
+  }, [setPopupList]);
 
   return (
     <Wrapper>
@@ -34,7 +61,7 @@ const RightPopup: FC = () => {
           <DropdownProfileName>{TEMP_NAME}</DropdownProfileName>
           <SchoolName>{TEMP_SCHOOL}</SchoolName>
         </ProfileArea>
-        <PopupArea>
+        <PopupArea onClick={handleCreatorShow}>
           만든이
           <span>배뽀</span>
         </PopupArea>
@@ -42,7 +69,7 @@ const RightPopup: FC = () => {
           버전
           <span>1.0</span>
         </PopupArea>
-        <PopupArea>
+        <PopupArea onClick={handleTermsShow}>
           이용약관
           <span>
             <Image src="/caret_right.png" width={6} height={9} />
@@ -93,6 +120,7 @@ const MainProfileImage = styled.img`
 `;
 
 const MainProfileName = styled.div`
+  ${ellipsisText}
   flex: 1;
   margin: 0 10px;
   font-size: 16px;
@@ -133,13 +161,17 @@ const ProfileEdit = styled.img`
 `;
 
 const DropdownProfileName = styled.div`
+  ${ellipsisText}
   margin-top: 12px;
+  padding: 0 16px;
   font-weight: 700;
   font-size: 16px;
 `;
 
 const SchoolName = styled.div`
+  ${ellipsisText}
   margin-top: 8px;
+  padding: 0 16px;
   font-size: 14px;
 `;
 
