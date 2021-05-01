@@ -7,6 +7,7 @@ import Button from "./Button";
 import CreatorPopup from "./PopupContents/CreatorPopup";
 import TermsPopup from "./PopupContents/TermsPopup";
 
+import PopupContent from "types/PopupContent";
 import popupState from "utils/states/popupState";
 import { ellipsisText } from "utils/style/commonStyle";
 
@@ -18,25 +19,18 @@ const RightPopup: FC = () => {
   const [isOpened, setIsOpened] = useState(false);
   const setPopupList = useSetRecoilState(popupState);
 
-  const handleCreatorShow = useCallback(() => {
-    setPopupList((prevList) => [
-      ...prevList,
-      {
-        ...CreatorPopup,
-        zIndex: prevList.length + 1,
-      },
-    ]);
-  }, [setPopupList]);
-
-  const handleTermsShow = useCallback(() => {
-    setPopupList((prevList) => [
-      ...prevList,
-      {
-        ...TermsPopup,
-        zIndex: prevList.length + 1,
-      },
-    ]);
-  }, [setPopupList]);
+  const handlePopupShow = useCallback(
+    (popup: PopupContent) => {
+      setPopupList((prevList) => [
+        ...prevList,
+        {
+          ...popup,
+          zIndex: prevList.length + 1,
+        },
+      ]);
+    },
+    [setPopupList],
+  );
 
   return (
     <Wrapper>
@@ -61,7 +55,7 @@ const RightPopup: FC = () => {
           <DropdownProfileName>{TEMP_NAME}</DropdownProfileName>
           <SchoolName>{TEMP_SCHOOL}</SchoolName>
         </ProfileArea>
-        <PopupArea onClick={handleCreatorShow}>
+        <PopupArea onClick={() => handlePopupShow(CreatorPopup)}>
           만든이
           <span>배뽀</span>
         </PopupArea>
@@ -69,7 +63,7 @@ const RightPopup: FC = () => {
           버전
           <span>1.0</span>
         </PopupArea>
-        <PopupArea onClick={handleTermsShow}>
+        <PopupArea onClick={() => handlePopupShow(TermsPopup)}>
           이용약관
           <span>
             <Image src="/caret_right.png" width={6} height={9} />
