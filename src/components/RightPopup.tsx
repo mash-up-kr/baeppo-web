@@ -4,8 +4,8 @@ import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 
 import Button from "./Button";
-import CreatorPopup from "./PopupContents/CreatorPopup";
-import TermsPopup from "./PopupContents/TermsPopup";
+import creatorPopup from "./PopupContents/creatorPopup";
+import termsPopup from "./PopupContents/termsPopup";
 
 import PopupContent from "types/PopupContent";
 import popupState from "utils/states/popupState";
@@ -55,7 +55,7 @@ const RightPopup: FC = () => {
           <DropdownProfileName>{TEMP_NAME}</DropdownProfileName>
           <SchoolName>{TEMP_SCHOOL}</SchoolName>
         </ProfileArea>
-        <PopupArea onClick={() => handlePopupShow(CreatorPopup)}>
+        <PopupArea onClick={() => handlePopupShow(creatorPopup)}>
           만든이
           <span>배뽀</span>
         </PopupArea>
@@ -63,7 +63,7 @@ const RightPopup: FC = () => {
           버전
           <span>1.0</span>
         </PopupArea>
-        <PopupArea onClick={() => handlePopupShow(TermsPopup)}>
+        <PopupArea onClick={() => handlePopupShow(termsPopup)}>
           이용약관
           <span>
             <Image src="/caret_right.png" width={6} height={9} />

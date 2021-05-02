@@ -39,7 +39,7 @@ const SectionContent = styled.div`
   font-size: 16px;
 `;
 
-const CreatorPopup: PopupContent = {
+const creatorPopup: PopupContent = {
   Title: (
     <CreatorPopupHead>
       <Image src="/logo_circle.png" width={40} height={40} />
@@ -68,4 +68,4 @@ const CreatorPopup: PopupContent = {
   ),
 };
 
-export default CreatorPopup;
+export default creatorPopup;
