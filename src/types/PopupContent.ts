@@ -1,6 +1,6 @@
 interface PopupContent {
-  title: string | JSX.Element;
-  content: JSX.Element;
+  Title: string | JSX.Element;
+  Content: JSX.Element;
   zIndex?: number;
   width?: string;
 }

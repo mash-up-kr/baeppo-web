@@ -40,13 +40,13 @@ const SectionContent = styled.div`
 `;
 
 const CreatorPopup: PopupContent = {
-  title: (
+  Title: (
     <CreatorPopupHead>
       <Image src="/logo_circle.png" width={40} height={40} />
       <span>MASH UP 10기 Team 6 배뽀</span>
     </CreatorPopupHead>
   ),
-  content: (
+  Content: (
     <PopupBody>
       <Section>
         <SectionTitle>Design</SectionTitle>

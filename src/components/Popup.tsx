@@ -12,10 +12,10 @@ const Popup: FC<PopupProps> = ({ onClose, popup }: PopupProps) => (
   <PopupBackground onClick={onClose} zIndex={popup.zIndex}>
     <PopupWrapper width={popup.width} onClick={(e) => e.stopPropagation()}>
       <PopupHead>
-        <PopupTitle>{popup.title}</PopupTitle>
+        <PopupTitle>{popup.Title}</PopupTitle>
         <CloseButton src="/close.png" onClick={onClose} />
       </PopupHead>
-      <PopupBody>{popup.content}</PopupBody>
+      <PopupBody>{popup.Content}</PopupBody>
     </PopupWrapper>
   </PopupBackground>
 );
