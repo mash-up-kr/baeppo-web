@@ -1,13 +1,26 @@
 import Image from "next/image";
-import React, { FC, useMemo, useState } from "react";
+import React, { FC, useMemo, useState, useCallback } from "react";
 import styled from "styled-components";
 
+import DetailSidebar from "./DetailSidebar";
 import ReviewList from "./ReviewList";
 import SearchInput from "./SearchInput";
 import Tab from "./Tab";
 
 const Sidebar: FC = () => {
   const [currentTab, setCurrentTab] = useState(0);
+
+  const [hidden, setHidden] = useState(true);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleItemClick = useCallback((item) => {
+    setSelectedItem(item);
+    setHidden(false);
+  }, []);
+
+  const handleCloseClick = useCallback(() => {
+    setHidden(true);
+  }, []);
 
   const renderTabContent = useMemo(() => {
     switch (currentTab) {
@@ -17,7 +30,7 @@ const Sidebar: FC = () => {
         return <>마이리뷰</>;
       case 0:
       default:
-        return <ReviewList />;
+        return <ReviewList onClick={handleItemClick} />;
     }
   }, [currentTab]);
 
@@ -53,6 +66,11 @@ const Sidebar: FC = () => {
         </Tab>
         <TabContent>{renderTabContent}</TabContent>
       </MainSection>
+      {!hidden && (
+      <DetailSection>
+        <DetailSidebar review={selectedItem} onClick={handleCloseClick}/>
+      </DetailSection>
+      )}
     </SidebarWrapper>
   );
 };
@@ -72,8 +90,8 @@ const Logo = styled.div`
 const SidebarWrapper = styled.div`
   z-index: 1;
   display: flex;
+  flex-direction: row;
   height: 100vh;
-  padding: 22px 24px;
   background: white;
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
 `;
@@ -83,6 +101,17 @@ const MainSection = styled.div`
   flex-direction: column;
   width: 590px;
   height: 100%;
+  padding: 22px 24px;
+`;
+
+const DetailSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 732px;
+  height: 100%;
+  padding: 60px 58px;
+  overflow-y: scroll;
+  background: #f9f9f9;
 `;
 
 const TabContent = styled.div`

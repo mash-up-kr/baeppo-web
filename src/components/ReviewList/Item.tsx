@@ -7,14 +7,15 @@ import Review from "types/Review";
 
 interface ItemProps {
   review: Review;
+  onClick: (review: Review) => void;
 }
 
 class Item extends Component<ItemProps> {
   render(): JSX.Element {
-    const { review } = this.props;
+    const { review, onClick } = this.props;
 
     return (
-      <div style={{ marginBottom: "25px" }}>
+      <div style={{ marginBottom: "25px" }} onClick={() => onClick(review)}>
         <ImageView images={review.images} />
         <ItemInfo>
           <Building>{review.buildingName}</Building>
@@ -30,12 +31,11 @@ class Item extends Component<ItemProps> {
           <Bar />
           <Date>{review.createdDate}</Date>
           <img
-            src=""
+            src="/default@3x.png"
             width="14px"
             height="18px"
             style={{
               marginRight: "16px",
-              background: "#4d30ff",
               justifyContent: "right",
             }}
           ></img>
