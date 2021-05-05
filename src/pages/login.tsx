@@ -3,22 +3,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FC, useCallback, useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 
 import Button from "components/Button";
 import Input from "components/Input";
 import { PageBackground, PagePopup, PageBottomLogoWrapper } from "components/MainPage";
-import firebaseState from "utils/states/firebaseState";
+import { useFirebaseAuth } from "utils/states/firebaseState";
 
 const LoginPage: FC = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-  const fApp = useRecoilValue(firebaseState);
+  const fAuth = useFirebaseAuth();
 
   useEffect(() => {
-    fApp.auth().onAuthStateChanged((user) => {
+    fAuth.onAuthStateChanged((user) => {
       if (user) {
         router.push("/");
         // User is signed in.
@@ -26,17 +25,14 @@ const LoginPage: FC = () => {
         // No user is signed in.
       }
     });
-  }, []);
+  }, [fAuth]);
 
   const handleLoginClick = useCallback(() => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    fApp
-      .auth()
-      .signInWithPopup(provider)
-      .then(() => {
-        router.replace("/");
-      });
-  }, [fApp]);
+    fAuth.signInWithRedirect(provider).then(() => {
+      router.replace("/");
+    });
+  }, [fAuth]);
 
   return (
     <PageBackground>

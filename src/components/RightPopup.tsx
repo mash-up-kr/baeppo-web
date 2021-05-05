@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { FC, useCallback, useState } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 
 import Button from "./Button";
@@ -9,7 +9,7 @@ import creatorPopup from "./PopupContents/creatorPopup";
 import termsPopup from "./PopupContents/termsPopup";
 
 import PopupContent from "types/PopupContent";
-import firebaseState from "utils/states/firebaseState";
+import { useFirebaseAuth } from "utils/states/firebaseState";
 import popupState from "utils/states/popupState";
 import { ellipsisText } from "utils/style/commonStyle";
 
@@ -20,7 +20,7 @@ const TEMP_SCHOOL = "서울대학교";
 const RightPopup: FC = () => {
   const [isOpened, setIsOpened] = useState(false);
   const setPopupList = useSetRecoilState(popupState);
-  const fApp = useRecoilValue(firebaseState);
+  const fAuth = useFirebaseAuth();
   const router = useRouter();
 
   const handlePopupShow = useCallback(
@@ -37,13 +37,10 @@ const RightPopup: FC = () => {
   );
 
   const handleLogout = useCallback(() => {
-    fApp
-      ?.auth()
-      .signOut()
-      .then(() => {
-        router.replace("/login");
-      });
-  }, [fApp]);
+    fAuth?.signOut().then(() => {
+      router.replace("/login");
+    });
+  }, [fAuth]);
 
   return (
     <Wrapper>

@@ -1,5 +1,5 @@
 import firebase from "firebase";
-import { atom } from "recoil";
+import { atom, useRecoilValue } from "recoil";
 
 const firebaseState = atom<firebase.app.App>({
   key: "firebaseState",
@@ -16,5 +16,11 @@ const firebaseState = atom<firebase.app.App>({
       measurementId: "G-ZQG3584P3Z",
     }),
 });
+
+export const useFirebaseAuth = (): firebase.auth.Auth => {
+  const fApp = useRecoilValue(firebaseState);
+
+  return fApp.auth();
+};
 
 export default firebaseState;
