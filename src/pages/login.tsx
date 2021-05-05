@@ -1,15 +1,42 @@
+import firebase from "firebase";
 import Image from "next/image";
 import Link from "next/link";
-import React, { FC, useState } from "react";
+import { useRouter } from "next/router";
+import React, { FC, useCallback, useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 
 import Button from "components/Button";
 import Input from "components/Input";
 import { PageBackground, PagePopup, PageBottomLogoWrapper } from "components/MainPage";
+import firebaseState from "utils/states/firebaseState";
 
 const LoginPage: FC = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
+  const fApp = useRecoilValue(firebaseState);
+
+  useEffect(() => {
+    fApp.auth().onAuthStateChanged((user) => {
+      if (user) {
+        router.push("/");
+        // User is signed in.
+      } else {
+        // No user is signed in.
+      }
+    });
+  }, []);
+
+  const handleLoginClick = useCallback(() => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    fApp
+      .auth()
+      .signInWithPopup(provider)
+      .then(() => {
+        router.replace("/");
+      });
+  }, [fApp]);
 
   return (
     <PageBackground>
@@ -27,7 +54,9 @@ const LoginPage: FC = () => {
           type="password"
           onValueChange={setPassword}
         />
-        <Button mt="28px">로그인하기</Button>
+        <Button mt="28px" onClick={handleLoginClick}>
+          로그인하기
+        </Button>
         <ForgotInfo>
           <Link href="/forgot">아이디 혹은 비밀번호를 잊으셨나요?</Link>
         </ForgotInfo>

@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "firebase": "^8.4.3",
     "fontfaceobserver": "^2.1.0",
     "next": "10.0.4",
     "nuka-carousel": "^4.7.5",

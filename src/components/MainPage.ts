@@ -10,6 +10,7 @@ const PagePopup = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
+  z-index: 10;
   width: 560px;
   height: 680px;
   padding: 0 50px;

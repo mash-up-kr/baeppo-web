@@ -43,7 +43,7 @@ const NaverMap: FC<NaverMapProps> = () => {
               "<div class='marker-info'>",
               `${info.name}`,
               "<span class='marker-review'>",
-              `리뷰 ${(info.reviews?.length ?? 0)}개`,
+              `리뷰 ${info.reviews?.length ?? 0}개`,
               "</span>",
               "</div>",
               "<img class='marker-img' src='/marker.png' />",
@@ -63,17 +63,7 @@ const NaverMap: FC<NaverMapProps> = () => {
     }
   }, [center, map]);
 
-  return (
-    <>
-      <Head>
-        <script
-          type="text/javascript"
-          src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=fqmdjzxln0"
-        ></script>
-      </Head>
-      <MapWrapper id="map" />
-    </>
-  );
+  return <MapWrapper id="map" />;
 };
 
 export default NaverMap;

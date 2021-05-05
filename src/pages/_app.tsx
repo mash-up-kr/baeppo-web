@@ -5,6 +5,9 @@ import React, { FC } from "react";
 import { RecoilRoot } from "recoil";
 import { createGlobalStyle } from "styled-components";
 
+import "firebase/auth";
+import "firebase/firestore";
+
 import Container from "components/Container";
 
 const GlobalStyle = createGlobalStyle`
@@ -58,6 +61,10 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => (
         href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet"
       />
+      <script
+        type="text/javascript"
+        src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=fqmdjzxln0"
+      ></script>
     </Head>
     <GlobalStyle />
     <Container>
