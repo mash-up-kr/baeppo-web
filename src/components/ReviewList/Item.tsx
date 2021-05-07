@@ -3,35 +3,42 @@ import styled from "styled-components";
 
 import ImageView from "./ImageView";
 
+import Review from "types/Review";
+
 interface ItemProps {
-  review: {
-    id: string;
-    buildingName: string;
-    userId: number;
-    nickName: string;
-    rating: number;
-    createdDate: string;
-    images: [string];
-    isBookmark: string;
-    content: string;
-  }
+  review: Review;
+  onClick: (review: Review) => void;
 }
 
 class Item extends Component<ItemProps> {
-  render() {
-    const { review } = this.props;
+  render(): JSX.Element {
+    const { review, onClick } = this.props;
 
     return (
-      <div style={{ marginBottom: "25px" }}>
-        <ImageView images={review.images}/>
+      <div style={{ marginBottom: "25px" }} onClick={() => onClick(review)}>
+        <ImageView images={review.images} />
         <ItemInfo>
           <Building>{review.buildingName}</Building>
-          <Bar/>
-          <span>{review.rating}</span><span style={{ color: "#bbbbbb" }}>/5</span>
-          <img src="/star@3x.png" width="18px" height="18px" style={{ margin: "0 1px 0 7px" }}></img>
-          <Bar/>
+          <Bar />
+          <span>{review.rating}</span>
+          <span style={{ color: "#bbbbbb" }}>/5</span>
+          <img
+            src="/star@3x.png"
+            width="18px"
+            height="18px"
+            style={{ margin: "0 1px 0 7px" }}
+          ></img>
+          <Bar />
           <Date>{review.createdDate}</Date>
-          <img src="" width="14px" height="18px" style={{ marginRight: "16px", background: "#4d30ff", justifyContent: "right" }} ></img>
+          <img
+            src="/default@3x.png"
+            width="14px"
+            height="18px"
+            style={{
+              marginRight: "16px",
+              justifyContent: "right",
+            }}
+          ></img>
         </ItemInfo>
         <Content>{review.content}</Content>
       </div>

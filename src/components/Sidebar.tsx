@@ -1,7 +1,9 @@
 import Image from "next/image";
-import React, { FC, useMemo, useState } from "react";
+import React, { FC, useMemo, useState, useCallback } from "react";
 import styled from "styled-components";
 
+import DetailSidebar from "./DetailSidebar";
+import ReviewList from "./ReviewList";
 import SearchInput from "./SearchInput";
 import Tab from "./Tab";
 
@@ -9,6 +11,18 @@ import ReviewItemEdit from "components/ReviewItemEdit";
 
 const Sidebar: FC = () => {
   const [currentTab, setCurrentTab] = useState(0);
+
+  const [hidden, setHidden] = useState(true);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleItemClick = useCallback((item) => {
+    setSelectedItem(item);
+    setHidden(false);
+  }, []);
+
+  const handleCloseClick = useCallback(() => {
+    setHidden(true);
+  }, []);
 
   const renderTabContent = useMemo(() => {
     switch (currentTab) {
@@ -18,7 +32,7 @@ const Sidebar: FC = () => {
         return <>마이리뷰</>;
       case 0:
       default:
-        return <>입담리스트</>;
+        return <ReviewList onClick={handleItemClick} />;
     }
   }, [currentTab]);
 
@@ -54,9 +68,12 @@ const Sidebar: FC = () => {
         </Tab>
         <TabContent>{renderTabContent}</TabContent>
       </ListSection>
-      <ItemSection>
-        <ReviewItemEdit />
-      </ItemSection>
+      <DetailSection>
+        {hidden ?
+         <ReviewItemEdit /> :
+         <DetailSidebar review={selectedItem} onClick={handleCloseClick}/>
+        }
+      </DetailSection>
     </SidebarWrapper>
   );
 };
@@ -80,6 +97,11 @@ const SidebarWrapper = styled.div`
   width: 100%;
   height: 100vh;
   z-index: 997;
+
+  flex-direction: row;
+  height: 100vh;
+  background: white;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
 `;
 
 const ListSection = styled.div`
@@ -92,14 +114,17 @@ const ListSection = styled.div`
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
 `;
 
-const ItemSection = styled.div`
+const DetailSection = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 55.37%;
   height: 100%;
   padding: 60px 58px;
-  background-color: #F9F9F9;
+  overflow-y: scroll;
+  background: #f9f9f9;
 `;
 
 const TabContent = styled.div`
   flex: 1;
-  margin-top: 20px;
+  overflow-y: scroll;
 `;
