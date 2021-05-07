@@ -16,9 +16,9 @@ const DETAIL_OPTIONS = [
 const NEARBY_COMMERCIAL_DISTRICTS = ["편의점", "지하철", "슈퍼", "대형마트", "공원"];
 
 const ScoresOption: FC<ScoresOptionProps> = () => {
-  const [totalScore, setTotalScore] = useState<number>(3.5);
-  const [detailScores, setDetailScores] = useState<(number|null)[]>([1, 0, 2, 1]);
-  const [nearbyCommercialDistricts, setNearbyCommercialDistricts] = useState<string[]>(["편의점", "슈퍼"]);
+  const [totalScore, setTotalScore] = useState<number>(0);
+  const [detailScores, setDetailScores] = useState<(number|null)[]>([null, null, null]);
+  const [nearbyCommercialDistricts, setNearbyCommercialDistricts] = useState<string[]>([]);
 
   const getScoreImageUrl = (detailIndex:number, levelIndex: number) => {
     let fileName = `/level${levelIndex + 1}`;
