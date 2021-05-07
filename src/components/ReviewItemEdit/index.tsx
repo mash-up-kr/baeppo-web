@@ -29,6 +29,7 @@ export default ReviewItemEdit;
 
 const Wrapper = styled.div`
   width: 100%;
+  min-width: 516px;
   height: 100%;
 `;
 
