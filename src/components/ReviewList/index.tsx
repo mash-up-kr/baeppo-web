@@ -4,7 +4,13 @@ import styled from "styled-components";
 import Item from "./Item";
 import ItemData from "./itemData.json";
 
-const ReviewList: FC = () => (
+import Review from "types/Review";
+
+interface ReviewListProps {
+  onClick: (item: Review) => void;
+}
+
+const ReviewList: FC<ReviewListProps> = ({ onClick }: ReviewListProps) => (
   <div>
     <Head>
       <ListTitle>
@@ -19,7 +25,7 @@ const ReviewList: FC = () => (
       </ListInfo>
     </Head>
     {ItemData.items.map((item, i) => (
-      <Item key={i} review={item}></Item>
+      <Item key={i} review={item} onClick={() => onClick(item)}></Item>
     ))}
   </div>
 );

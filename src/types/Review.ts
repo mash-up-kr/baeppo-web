@@ -1,3 +1,5 @@
+import ReviewItem from "./ReviewItem";
+
 interface Review {
   id: string;
   buildingName: string;
@@ -8,6 +10,9 @@ interface Review {
   images: string[];
   isBookmark: boolean;
   content: string;
+  contentDetail: string;
+  items: ReviewItem[];
+  tags: string[];
 }
 
 export default Review;
