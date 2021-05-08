@@ -28,6 +28,11 @@ const ImagesOption: FC<ImagesOptionProps> = () => {
     { accept: "image/*", multiple: false },
   );
 
+  const handleImageRemove = (index: number) => {
+    setImages(images.filter((_, i) => i !== index));
+    setImageUrls(imageUrls.filter((_, i) => i !== index));
+  };
+
   return (
     <Wrapper>
       <TitleWrapper>
@@ -36,10 +41,12 @@ const ImagesOption: FC<ImagesOptionProps> = () => {
       </TitleWrapper>
       <ImageWrapper>
         <FlexWrapper>
-          <ImageAddButton onClick={handleFileSelect}>
-            +
-          </ImageAddButton>
-          {imageUrls.map((url, index) => <Thumbnail key={index} src={url} />)}
+          {images.length < 5 && (
+            <ImageAddButton onClick={handleFileSelect}>
+              +
+            </ImageAddButton>
+          )}
+          {imageUrls.map((url, index) => <Thumbnail key={index} src={url} onClick={() => handleImageRemove(index)} />)}
         </FlexWrapper>
       </ImageWrapper>
     </Wrapper>
@@ -97,4 +104,8 @@ const Thumbnail = styled.img`
   border-radius: 8px;
   border: 1px solid #D8D8D8;
   margin-right: 10px;
+
+  &:hover {
+    filter: brightness(60%);
+  }
 `;
