@@ -3,11 +3,10 @@ import React, { FC, useMemo, useState, useCallback } from "react";
 import styled from "styled-components";
 
 import DetailSidebar from "./DetailSidebar";
+import ReviewItemEdit from "./ReviewItemEdit";
 import ReviewList from "./ReviewList";
 import SearchInput from "./SearchInput";
 import Tab from "./Tab";
-
-import ReviewItemEdit from "components/ReviewItemEdit";
 
 const Sidebar: FC = () => {
   const [currentTab, setCurrentTab] = useState(0);
@@ -68,12 +67,14 @@ const Sidebar: FC = () => {
         </Tab>
         <TabContent>{renderTabContent}</TabContent>
       </ListSection>
-      <DetailSection>
-        {hidden ?
-         <ReviewItemEdit /> :
-         <DetailSidebar review={selectedItem} onClick={handleCloseClick}/>
-        }
-      </DetailSection>
+      {!hidden &&
+        <DetailSection>
+          <DetailSidebar review={selectedItem} onClick={handleCloseClick}/>
+          {false &&
+            <ReviewItemEdit />
+          }
+        </DetailSection>
+      }
     </SidebarWrapper>
   );
 };
@@ -94,12 +95,10 @@ const SidebarWrapper = styled.div`
   z-index: 1;
   display: flex;
   max-width: 1322px;
-  width: 100%;
   height: 100vh;
   z-index: 997;
 
   flex-direction: row;
-  height: 100vh;
   background: white;
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
 `;
@@ -107,7 +106,7 @@ const SidebarWrapper = styled.div`
 const ListSection = styled.div`
   display: flex;
   flex-direction: column;
-  width: 44.63%;
+  width: 590px;
   height: 100%;
   padding: 28px 24px;
   background: white;
@@ -117,7 +116,7 @@ const ListSection = styled.div`
 const DetailSection = styled.div`
   display: flex;
   flex-direction: column;
-  width: 55.37%;
+  width: 732px;
   height: 100%;
   padding: 60px 58px;
   overflow-y: scroll;
