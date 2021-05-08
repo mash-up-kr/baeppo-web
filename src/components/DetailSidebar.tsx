@@ -7,7 +7,7 @@ import ReviewItemCard from "./ReviewList/ReviewItemCard";
 import Review from "types/Review";
 
 interface DetailSidebarProps {
-  review: Review;
+  review: Review|null;
   onClick: () => void;
 }
 

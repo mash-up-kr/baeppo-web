@@ -7,6 +7,8 @@ import ReviewList from "./ReviewList";
 import SearchInput from "./SearchInput";
 import Tab from "./Tab";
 
+import ReviewItemEdit from "components/ReviewItemEdit";
+
 const Sidebar: FC = () => {
   const [currentTab, setCurrentTab] = useState(0);
 
@@ -36,7 +38,7 @@ const Sidebar: FC = () => {
 
   return (
     <SidebarWrapper>
-      <MainSection>
+      <ListSection>
         <Logo>
           <Image src="/logo.png" alt="logo" width="68px" height="68px" />
           <Image
@@ -65,12 +67,13 @@ const Sidebar: FC = () => {
           </div>
         </Tab>
         <TabContent>{renderTabContent}</TabContent>
-      </MainSection>
-      {!hidden && (
+      </ListSection>
       <DetailSection>
-        <DetailSidebar review={selectedItem} onClick={handleCloseClick}/>
+        {hidden ?
+         <ReviewItemEdit /> :
+         <DetailSidebar review={selectedItem} onClick={handleCloseClick}/>
+        }
       </DetailSection>
-      )}
     </SidebarWrapper>
   );
 };
@@ -90,24 +93,31 @@ const Logo = styled.div`
 const SidebarWrapper = styled.div`
   z-index: 1;
   display: flex;
+  max-width: 1322px;
+  width: 100%;
+  height: 100vh;
+  z-index: 997;
+
   flex-direction: row;
   height: 100vh;
   background: white;
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
 `;
 
-const MainSection = styled.div`
+const ListSection = styled.div`
   display: flex;
   flex-direction: column;
-  width: 590px;
+  width: 44.63%;
   height: 100%;
-  padding: 22px 24px;
+  padding: 28px 24px;
+  background: white;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
 `;
 
 const DetailSection = styled.div`
   display: flex;
   flex-direction: column;
-  width: 732px;
+  width: 55.37%;
   height: 100%;
   padding: 60px 58px;
   overflow-y: scroll;
