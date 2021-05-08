@@ -7,7 +7,7 @@ import LatLng from "types/LatLng";
 interface SearchResultsProps {
   keyword: string;
   results: KeywordSearchResult[];
-  onClick: (keyword: string, position: LatLng) => void;
+  onClick: (name: string, position: LatLng, address: string) => void;
 }
 
 const SearchResults: FC<SearchResultsProps> = ({
@@ -24,7 +24,7 @@ const SearchResults: FC<SearchResultsProps> = ({
       {results.map((r, index) => (
         <ResultItem
           key={`${r.name}_${index}`}
-          onClick={() => onClick(r.name, r.position)}
+          onClick={() => onClick(r.name, r.position, r.address)}
         >
           <ItemName>{r.name}</ItemName>
           <ItemAddress>{r.address}</ItemAddress>

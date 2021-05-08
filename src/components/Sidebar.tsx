@@ -7,6 +7,8 @@ import ReviewList from "./ReviewList";
 import SearchInput from "./SearchInput";
 import Tab from "./Tab";
 
+import ReviewItemEdit from "components/ReviewItemEdit";
+
 const Sidebar: FC = () => {
   const [currentTab, setCurrentTab] = useState(0);
 
@@ -36,21 +38,13 @@ const Sidebar: FC = () => {
 
   return (
     <SidebarWrapper>
-      <MainSection>
+      <ListSection>
         <Logo>
           <Image src="/logo.png" alt="logo" width="68px" height="68px" />
-          <Image
-            src="/logo_text.png"
-            alt="logo_text"
-            width="auto"
-            height="31px"
-          />
+          <Image src="/logo_text.png" alt="logo_text" width="auto" height="31px" />
         </Logo>
         <SearchInput />
-        <Tab
-          currentTab={currentTab}
-          onTabChange={(index) => setCurrentTab(index)}
-        >
+        <Tab currentTab={currentTab} onTabChange={(index) => setCurrentTab(index)}>
           <div>
             <Image src="/tab_list.svg" alt="list" width={16} height={16} />
             입담리스트
@@ -65,12 +59,14 @@ const Sidebar: FC = () => {
           </div>
         </Tab>
         <TabContent>{renderTabContent}</TabContent>
-      </MainSection>
-      {!hidden && (
+      </ListSection>
       <DetailSection>
-        <DetailSidebar review={selectedItem} onClick={handleCloseClick}/>
+        {hidden ? (
+          <ReviewItemEdit />
+        ) : (
+          <DetailSidebar review={selectedItem} onClick={handleCloseClick} />
+        )}
       </DetailSection>
-      )}
     </SidebarWrapper>
   );
 };
@@ -89,25 +85,30 @@ const Logo = styled.div`
 
 const SidebarWrapper = styled.div`
   z-index: 1;
+  z-index: 997;
   display: flex;
   flex-direction: row;
+  width: 100%;
+  max-width: 1322px;
   height: 100vh;
   background: white;
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
 `;
 
-const MainSection = styled.div`
+const ListSection = styled.div`
   display: flex;
   flex-direction: column;
-  width: 590px;
+  width: 44.63%;
   height: 100%;
-  padding: 22px 24px;
+  padding: 28px 24px;
+  background: white;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
 `;
 
 const DetailSection = styled.div`
   display: flex;
   flex-direction: column;
-  width: 732px;
+  width: 55.37%;
   height: 100%;
   padding: 60px 58px;
   overflow-y: scroll;
