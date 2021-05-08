@@ -8,7 +8,7 @@ import creatorPopup from "./PopupContents/creatorPopup";
 import termsPopup from "./PopupContents/termsPopup";
 
 import PopupContent from "types/PopupContent";
-import popupState from "utils/states/popupState";
+import { popupState } from "utils/states/popupState";
 import { ellipsisText } from "utils/style/commonStyle";
 
 const TEMP_IMAGE = "/temp_profile.png";
