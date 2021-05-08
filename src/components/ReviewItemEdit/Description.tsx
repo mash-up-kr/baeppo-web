@@ -1,9 +1,7 @@
 import React, { FC, useCallback, useState } from "react";
 import styled from "styled-components";
 
-interface DescriptionProps {}
-
-const Description: FC<DescriptionProps> = () => {
+const Description: FC = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 

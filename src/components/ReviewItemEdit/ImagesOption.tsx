@@ -46,7 +46,9 @@ const ImagesOption: FC<ImagesOptionProps> = () => {
               +
             </ImageAddButton>
           )}
-          {imageUrls.map((url, index) => <Thumbnail key={index} src={url} onClick={() => handleImageRemove(index)} />)}
+          {imageUrls.map((url, index) => (
+            <Thumbnail key={index} src={url} onClick={() => handleImageRemove(index)} />
+          ))}
         </FlexWrapper>
       </ImageWrapper>
     </Wrapper>
