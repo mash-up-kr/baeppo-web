@@ -23,11 +23,13 @@ const ReviewItemEdit: FC<ReviewItemEditProps> = () => (
       <ScoresOption />
       <Description />
       <ImagesOption />
+      <CompleteButton />
     </Wrapper>
 );
 export default ReviewItemEdit;
 
 const Wrapper = styled.div`
+  position: relative;
   width: 100%;
   min-width: 516px;
   height: 100%;
@@ -50,4 +52,17 @@ const CloseButton = styled.button`
   border: 0;
   cursor: pointer;
   background-color: #11ffee00;
+`;
+
+const CompleteButton = styled.button`
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -16px);
+  width: 150px;
+  height: 48px;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  background: none;
+  background-image: url('/complete_button.svg');
 `;
