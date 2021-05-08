@@ -1,21 +1,26 @@
 import Image from "next/image";
 import React, { FC } from "react";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 
 import AddressOption from "components/ReviewItemEdit/AddressOption";
 import Description from "components/ReviewItemEdit/Description";
 import ImagesOption from "components/ReviewItemEdit/ImagesOption";
 import ScoresOption from "components/ReviewItemEdit/ScoresOption";
+import { sideBarDetailPopupState } from "utils/states/popupState";
 
 interface ReviewItemEditProps {
   id?: number;
 }
 
-const ReviewItemEdit: FC<ReviewItemEditProps> = () => (
+const ReviewItemEdit: FC<ReviewItemEditProps> = () => {
+  const setPopupState = useSetRecoilState(sideBarDetailPopupState);
+
+  return (
     <Wrapper>
       <Header>
         <Title>마이리뷰 작성하기</Title>
-        <CloseButton>
+        <CloseButton onClick={() => setPopupState(false)}>
           <Image src="/close.svg" alt="close" width="32px" height="32px"/>
         </CloseButton>
       </Header>
@@ -25,7 +30,8 @@ const ReviewItemEdit: FC<ReviewItemEditProps> = () => (
       <ImagesOption />
       <CompleteButton />
     </Wrapper>
-);
+  );
+};
 export default ReviewItemEdit;
 
 const Wrapper = styled.div`

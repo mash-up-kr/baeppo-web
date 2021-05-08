@@ -2,7 +2,7 @@ import React, { FC, useCallback } from "react";
 import { useRecoilState } from "recoil";
 
 import Popup from "components/Popup";
-import popupState from "utils/states/popupState";
+import { popupState } from "utils/states/popupState";
 
 const PopupContext: FC = () => {
   const [popupList, setPopupList] = useRecoilState(popupState);
