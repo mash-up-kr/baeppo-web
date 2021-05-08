@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
 
 const useFileInput = (
-  callback: (files: FileList) => void,
+  callback: (files: File) => void,
   opts?: { accept?: string; multiple?: boolean },
 ): (
 ) => void => {
@@ -28,7 +28,7 @@ const useFileInput = (
     if (input.current) {
       input.current.onchange = () => {
         if (input.current && input.current.files) {
-          callback(input.current.files);
+          callback(input.current.files[0]);
         }
       };
     }

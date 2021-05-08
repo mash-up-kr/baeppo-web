@@ -31,6 +31,7 @@ const Wrapper = styled.div`
   width: 100%;
   min-width: 516px;
   height: 100%;
+  margin-bottom: 70px;
 `;
 
 const Header = styled.header`
