@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { FC, useCallback, useState } from "react";
+import React, { FC, useCallback, useMemo, useState } from "react";
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 
@@ -9,13 +9,11 @@ import creatorPopup from "./PopupContents/creatorPopup";
 import termsPopup from "./PopupContents/termsPopup";
 
 import PopupContent from "types/PopupContent";
-import { useFirebaseAuth } from "utils/states/firebaseState";
+import { useFirebaseAuth, useFirebaseDb } from "utils/states/firebaseState";
 import popupState from "utils/states/popupState";
 import { ellipsisText } from "utils/style/commonStyle";
 
-const TEMP_IMAGE = "/temp_profile.png";
-const TEMP_NAME = "Temp";
-const TEMP_SCHOOL = "서울대학교";
+const TEMP_SCHOOL = "서울시립대학교";
 
 const RightPopup: FC = () => {
   const [isOpened, setIsOpened] = useState(false);
@@ -42,11 +40,18 @@ const RightPopup: FC = () => {
     });
   }, [fAuth]);
 
+  const userName = useMemo(() => fAuth.currentUser?.displayName, [fAuth]);
+  const userImage = useMemo(() => fAuth.currentUser?.photoURL, [fAuth]);
+
+  if (!fAuth.currentUser) {
+    return null;
+  }
+
   return (
     <Wrapper>
       <Main>
-        <MainProfileImage src={TEMP_IMAGE} />
-        <MainProfileName>{TEMP_NAME}</MainProfileName>
+        <MainProfileImage src={userImage!} />
+        <MainProfileName>{userName}</MainProfileName>
         <Chevron
           onClick={() => setIsOpened(!isOpened)}
           isOpened={isOpened}
@@ -59,10 +64,10 @@ const RightPopup: FC = () => {
       <Dropdown isOpened={isOpened}>
         <ProfileArea>
           <ProfileImageArea>
-            <BigProfile src={TEMP_IMAGE} />
+            <BigProfile src={userImage!} />
             <ProfileEdit src="/capture.png" />
           </ProfileImageArea>
-          <DropdownProfileName>{TEMP_NAME}</DropdownProfileName>
+          <DropdownProfileName>{userName}</DropdownProfileName>
           <SchoolName>{TEMP_SCHOOL}</SchoolName>
         </ProfileArea>
         <PopupArea onClick={() => handlePopupShow(creatorPopup)}>

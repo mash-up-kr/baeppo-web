@@ -29,7 +29,7 @@ const LoginPage: FC = () => {
 
   const handleLoginClick = useCallback(() => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    fAuth.signInWithRedirect(provider).then(() => {
+    fAuth.signInWithPopup(provider).then(() => {
       router.replace("/");
     });
   }, [fAuth]);

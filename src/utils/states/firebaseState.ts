@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import { doc, setDoc } from "firebase/firestore";
 import { atom, useRecoilValue } from "recoil";
 
 const firebaseState = atom<firebase.app.App>({
@@ -21,6 +22,12 @@ export const useFirebaseAuth = (): firebase.auth.Auth => {
   const fApp = useRecoilValue(firebaseState);
 
   return fApp.auth();
+};
+
+export const useFirebaseDb = (): firebase.firestore.Firestore => {
+  const fApp = useRecoilValue(firebaseState);
+
+  return fApp.firestore();
 };
 
 export default firebaseState;
